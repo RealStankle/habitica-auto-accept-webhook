@@ -1,0 +1,17 @@
+# Build
+dist
+
+# Node Modules
+node_modules
+
+# Logs
+logs
+*.log
+yarn-debug.log*
+yarn-error.log*
+
+# IDE - VSCode
+.vscode/*
+
+# Environment Variables
+.env
