@@ -1,8 +1,6 @@
 import dotenv from 'dotenv';
-import dotenvExpand from 'dotenv-expand';
 
-const env = dotenv.config();
-dotenvExpand.expand(env);
+dotenv.config();
 
 const getEnvVariableOrThrow = (variable: string): string => {
   const envVariable = process.env[variable];
