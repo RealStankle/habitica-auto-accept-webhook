@@ -6,7 +6,7 @@
   "scripts": {
     "start:dev": "concurrently \"swc ./src -w -d ./dist\" \"sleep 1 && nodemon ./dist/server.js\"",
     "build": "swc ./src -d ./dist",
-    "start": "cross-env NODE_ENV=production node ./dist/server.js",
+    "start": "NODE_ENV=production node ./dist/server.js",
     "clean": "rm -rf ./dist"
   },
   "dependencies": {
@@ -26,7 +26,6 @@
     "@typescript-eslint/parser": "^5.54.1",
     "chokidar": "^3.5.3",
     "concurrently": "^7.6.0",
-    "cross-env": "^7.0.3",
     "dotenv-expand": "^10.0.0",
     "eslint": "^8.0.1",
     "eslint-config-prettier": "^8.7.0",
