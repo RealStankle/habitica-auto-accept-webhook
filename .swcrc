@@ -7,10 +7,12 @@
       "dynamicImport": true
     },
     "target": "es2022",
+    "baseUrl": "./",
     "paths": {
-      "@routes/*": ["./src/routes/*"]
-    },
-    "baseUrl": "./"
+      "@routes/*": ["./src/routes/*"],
+      "@middlewares/*": ["./src/middlewares/*"],
+      "@utils/*": ["./src/utils/*"]
+    }
   },
   "module": {
     "type": "commonjs"
