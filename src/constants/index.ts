@@ -1,9 +1,11 @@
-import getEnvVariableOrThrow from '../utils/getEnvVariableOrThrow';
+import getEnvVariableOrThrow from '@utils/getEnvVariableOrThrow';
 
 const WEBHOOK_OPTIONS = {
   id: getEnvVariableOrThrow('WEBHOOK_ID'),
   enabled: true,
-  url: getEnvVariableOrThrow('WEBHOOK_URL'),
+  url: `${getEnvVariableOrThrow('WEBHOOK_URL')}?secret=${getEnvVariableOrThrow(
+    'WEBHOOK_SECRET',
+  )}`,
   label: 'My Quest Webhook',
   type: 'questActivity',
   options: {
