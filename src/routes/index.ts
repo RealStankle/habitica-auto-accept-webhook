@@ -11,11 +11,19 @@ router.get('/', (ctx: Context): void => {
 });
 
 router.post('/', async (ctx: Context): Promise<void> => {
-  await axios.post(
-    'https://habitica.com/api/v3/groups/party/quests/accept',
-    {},
-    { headers: HABITICA_REQUEST_HEADERS },
-  );
+  try {
+    await axios.post(
+      'https://habitica.com/api/v3/groups/party/quests/accept',
+      {},
+      { headers: HABITICA_REQUEST_HEADERS },
+    );
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error(error.response && error.response.data);
+    }
+
+    console.error(error);
+  }
 
   ctx.status = 200;
   ctx.body = '';
