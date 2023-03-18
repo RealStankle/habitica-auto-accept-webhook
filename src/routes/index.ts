@@ -10,20 +10,27 @@ router.get('/', (ctx: Context): void => {
   ctx.body = { message: 'Hello World' };
 });
 
-router.post('/', async (ctx: Context): Promise<void> => {
+const acceptQuest = async () => {
   try {
-    await axios.post(
+    const { data } = await axios.post(
       'https://habitica.com/api/v3/groups/party/quests/accept',
       {},
       { headers: HABITICA_REQUEST_HEADERS },
     );
+
+    console.log(data);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error(error.response && error.response.data);
+      return;
     }
 
     console.error(error);
   }
+};
+
+router.post('/', (ctx: Context): void => {
+  setTimeout(acceptQuest, 30000);
 
   ctx.status = 200;
   ctx.body = '';
