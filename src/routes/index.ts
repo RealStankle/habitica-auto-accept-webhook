@@ -20,6 +20,7 @@ router.post('/', async (ctx: Context): Promise<void> => {
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error(error.response && error.response.data);
+      return;
     }
 
     console.error(error);
