@@ -1,6 +1,6 @@
 import { Context } from 'koa';
 import Router from '@koa/router';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { HABITICA_REQUEST_HEADERS } from '../constants/index';
 
 const router = new Router();
@@ -10,7 +10,7 @@ router.get('/', (ctx: Context): void => {
   ctx.body = { message: 'Hello World' };
 });
 
-router.post('/', async (ctx: Context): Promise<void> => {
+const acceptQuest = async (): Promise<void> => {
   try {
     await axios.post(
       'https://habitica.com/api/v3/groups/party/quests/accept',
@@ -19,12 +19,16 @@ router.post('/', async (ctx: Context): Promise<void> => {
     );
   } catch (error) {
     if (axios.isAxiosError(error)) {
-      console.error(error.response && error.response.data);
+      console.error((error.response as AxiosResponse).data);
       return;
     }
 
     console.error(error);
   }
+};
+
+router.post('/', async (ctx: Context): Promise<void> => {
+  await acceptQuest();
 
   ctx.status = 200;
   ctx.body = '';
