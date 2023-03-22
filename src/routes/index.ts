@@ -10,25 +10,22 @@ router.get('/', (ctx: Context): void => {
   ctx.body = { message: 'Hello World' };
 });
 
-const acceptQuest = async (): Promise<void> => {
+router.post('/', async (ctx: Context): Promise<void> => {
   try {
-    await axios.post(
+    const { data } = await axios.post(
       'https://habitica.com/api/v3/groups/party/quests/accept',
       {},
       { headers: HABITICA_REQUEST_HEADERS },
     );
+
+    console.log(data);
   } catch (error) {
     if (axios.isAxiosError(error)) {
       console.error((error.response as AxiosResponse).data);
-      return;
+    } else {
+      console.error(error);
     }
-
-    console.error(error);
   }
-};
-
-router.post('/', async (ctx: Context): Promise<void> => {
-  await acceptQuest();
 
   ctx.status = 200;
   ctx.body = '';
