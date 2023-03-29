@@ -11,6 +11,8 @@ router.get('/', (ctx: Context): void => {
 });
 
 router.post('/', async (ctx: Context): Promise<void> => {
+  await new Promise((resolve) => setTimeout(resolve, 10000));
+
   try {
     const { data } = await axios.post(
       'https://habitica.com/api/v3/groups/party/quests/accept',
