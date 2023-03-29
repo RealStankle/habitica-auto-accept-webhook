@@ -8,4 +8,5 @@ app.listen(port, async () => {
   console.log(`Server is listening on port ${port}`);
   await deleteWebhook();
   await createWebhook();
+  console.log('The webhook has been refreshed');
 });
